@@ -3,8 +3,18 @@
  Написать функцию, которая принимает на вход слово и проверяет, является ли это слово палиндромом
 */
 
+import { type } from "os";
+import { stringify } from "querystring";
+
 function isPalindrom(word) {
   // Ваш код
+  if (typeof word != 'string') {
+    return false;
+  } else {
+    const reversed = word.split('').reverse().join('');
+    word === reversed;
+    return true;
+  }
 }
 
 /*
