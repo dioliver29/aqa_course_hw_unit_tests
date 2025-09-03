@@ -3,18 +3,17 @@
  Написать функцию, которая принимает на вход слово и проверяет, является ли это слово палиндромом
 */
 
-import { type } from "os";
-import { stringify } from "querystring";
+import { type } from 'os';
+import { stringify } from 'querystring';
 
 function isPalindrom(word) {
-  // Ваш код
-  if (typeof word != 'string') {
+  if (typeof word !== 'string') {
     return false;
-  } else {
-    const reversed = word.split('').reverse().join('');
-    word === reversed;
-    return true;
   }
+
+  word = word.toLowerCase();
+  const reversed = word.split('').reverse().join('');
+  return word === reversed;
 }
 
 /*
@@ -25,7 +24,27 @@ function isPalindrom(word) {
 */
 
 function findLongestWords(sentence) {
-  // Ваш код
+  if (typeof sentence !== 'string') {
+    return [];
+  }
+
+  sentence = sentence.trim().split(/\s+/).filter(Boolean);
+
+  if (sentence.length === 0) return [];
+
+  let maxLength = 0;
+  let longest = [];
+
+  for (const word of sentence) {
+    if (word.length > maxLength) {
+      maxLength = word.length;
+      longest = [word];
+    } else if (word.length === maxLength) {
+      longest.push(word);
+    }
+  }
+
+  return longest;
 }
 
 export { isPalindrom, findLongestWords };

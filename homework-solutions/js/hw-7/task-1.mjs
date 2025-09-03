@@ -20,9 +20,9 @@ function mergeArrays(...arrays) {
     - Пример: I am super engineer => i_Am_Super_Engineer
   */
 function devideBy(sentence) {
-  sentence = sentence.trim().toLowerCase();
+  sentence = sentence.trim().toLowerCase().split(/\s+/);
   const result = [];
-  for (const word of sentence.split(' ')) {
+  for (const word of sentence) {
     result.push(word.charAt(0).toUpperCase() + word.slice(1));
   }
   sentence = result.join('_');
