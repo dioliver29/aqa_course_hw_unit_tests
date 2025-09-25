@@ -15,22 +15,45 @@ const characters = [
 
 function addCharacter(character) {
   // Ваш код
+  if (typeof character.name === 'string' && typeof character.age === 'number') {
+    characters.push(character);
+  } else {
+    throw new Error('Invalid format');
+  }
 }
 
 function getCharacter(name) {
   // Ваш код
+  return characters.find((character) => character.name === name);
 }
 
 function getCharactersByAge(minAge) {
   // Ваш код
+   if (typeof minAge !== "number" || Number.isNaN(minAge) || minAge < 0) {
+    throw new Error("minAge must be a non-negative number");
+  }
+  return characters.filter(ch => ch.age >= minAge);
 }
 
 function updateCharacter(name, newCharacter) {
   // Ваш код
+  const character = getCharacter(name);
+  if (character) {
+    character.name = newCharacter.name ?? character.name;
+    character.age = newCharacter.age ?? character.age;
+  } else {
+    throw new Error(`Character "${name}" not found`);
+  }
 }
 
 function removeCharacter(name) {
   // Ваш код
+  const index = characters.findIndex(ch => ch.name === name);
+  if (index !== -1) {
+    characters.splice(index, 1);
+  } else {
+    throw new Error(`Character "${name}" not found`);
+  }
 }
 
 export { characters, addCharacter, updateCharacter, getCharacter, getCharactersByAge, removeCharacter };
